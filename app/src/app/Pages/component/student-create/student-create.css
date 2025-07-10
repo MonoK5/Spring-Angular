@@ -1,0 +1,32 @@
+.container{
+    margin-top: 300px;
+    border: solid;
+    border-width: 10px;
+    height: 30rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    form{
+        border: solid green ;
+        width: 400px;
+        height: 25rem;
+    }
+        .form{
+            display: flex;
+            flex-direction: column;
+              justify-content: center;
+              align-items: center;
+             border: solid red;
+             height: 20rem;
+        }
+             input{
+                width: 300px;
+                margin-bottom: 20px;
+                border: solid;
+             }
+.btns{
+    display: flex;
+
+}
+                
