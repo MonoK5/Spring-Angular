@@ -1,1 +1,41 @@
-<p>student-list works!</p>
+
+<div class="w-screen h-screen bg-linear from-slate-900 to-red-900">
+<h1 style="text-align: center; font-weight: bold 100px; font-size: xx-large; color: rgb(77, 185, 235); font-weight: 900;margin-top: 100px;">
+  Student List
+</h1>
+
+<div style="display: flex; justify-content: center; margin-top: 50px;">
+  <table class="bg-sky-200/80" style="border-collapse: collapse; width: 80%; text-align: left; font-family: Arial, sans-serif;">
+    <thead>
+      <tr style="background-color: #dfd6d68e;">
+        <th style="border: 1px solid #166575; padding: 10px;">ID</th>
+        <th style="border: 1px solid #166575; padding: 10px;">Name</th>
+        <th style="border: 1px solid #166575; padding: 10px;">Grade</th>
+        <th style="border: 1px solid #166575; padding: 10px;">Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (student of students; track $index) {
+        <tr style="box-shadow: 10px 2px 10px rgba(0, 0, 0, 0.1);">
+          <td style="border: 1px solid #166575; padding: 10px;">{{student.id}}</td>
+          <td style="border: 1px solid #166575; padding: 10px;">{{student.name}}</td>
+          <td style="border: 1px solid #166575; padding: 10px;">{{student.grade}}</td>
+          <td style="border: 1px solid #166575; padding: 10px; display: flex; justify-content: space-between; align-items: center;">
+            {{student.score}}
+            <span 
+              (click)="deleteStudent(student.id)" 
+              style="cursor: pointer; color: red; margin-left: 10px;"
+              title="Delete student">
+              🗑️
+            </span>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+</div>
+
+
+
+
