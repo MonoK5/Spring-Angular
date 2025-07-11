@@ -1,1 +1,77 @@
-<p>student-search works!</p>
+<div class="container">
+  <h2 class="text-white text-center text-white">Find a Student</h2>
+  <div class="pt-2">
+    <form (ngSubmit)="getStudentByName()" class="max-w-md mx-auto">
+      <label
+        for="search"
+        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+        >Search</label
+      >
+      <div class="relative">
+        <input
+          type="search"
+          [(ngModel)]="searchStudent"
+          type="search"
+          id="student"
+          name="searchStudent"
+          class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Search a student"
+          required
+        />
+        <button
+          type="submit"
+          class="text-white absolute end-2.5 bottom-2.5 bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:outline-none font-medium rounded-lg text-sm px-4 py-2"
+        >
+          Search
+        </button>
+      </div>
+    </form>
+
+    <p *ngIf="showError" class="text-red-600">
+      No students found with this name.
+    </p>
+  </div>
+
+  <div class="pt-2" *ngIf="student && student.length > 0">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table
+        class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+      >
+        <thead
+          class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+        >
+          <tr>
+            <th scope="col" class="px-6 py-3">
+              <div class="flex items-center">
+                <th>Name</th>
+              </div>
+            </th>
+            <th scope="col" class="px-6 py-3">
+              <div class="flex items-center">Marks</div>
+            </th>
+            <th scope="col" class="px-6 py-3">
+              <span class="sr-only">Edit</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of student" class="bg-white dark:bg-gray-800">
+            <th
+              scope="row"
+              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            >
+              {{ s.name }}
+            </th>
+            <td class="px-6 py-4">{{ s.score}}</td>
+
+            <td class="px-6 py-4 text-right">
+              <!--<a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>-->
+
+              Edit
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

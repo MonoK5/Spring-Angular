@@ -2,10 +2,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { UserService } from '../../../Services/StudentsServices';
-
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { StudentUpdate } from '../student-update/student-update';
+import { StudentSearch } from '../student-search/student-search';
+import { StudentCreate } from "../student-create/student-create";
+UserService 
 @Component({
   selector: 'app-student-list',
-  imports: [],
+    standalone: true,
+  imports: [CommonModule, RouterModule, StudentCreate, StudentUpdate, StudentSearch, StudentCreate],
+  providers: [UserService],
   templateUrl: './student-list.html',
   styleUrl: './student-list.css'
 })
@@ -14,28 +21,74 @@ delete(arg0: number|undefined) {
 throw new Error('Method not implemented.');
 }
   
-  
-  students: Student[] = [];
 
-  constructor(private studentService: UserService ) {}
+  students: Student[] = [];
+  totalStudent: number = 0;
+  showAddModal = false;
+  showUpdateModal = false;
+  showSearchModal = false;
+  
+  averageScore: number = 0;
+  message: string = '';
+
+  constructor(private studentService: UserService) {}
 
   ngOnInit(): void {
-    this.getStudent()
+    this.getStudentsData();
   }
 
-  getStudent(){
-        this.studentService.getStudent().subscribe((data: Student[]) => {
-      this.students = data;
-    });
-  }
-  deleteStudent(id: any): void {
-  if (confirm('Are you sure you want to delete this student?')) {
-    this.studentService.deleteStudent(id).subscribe(()=> {
-      this.getStudent();
-    })
-  }
+getStudentsData() {
+  this.studentService.getStudent().subscribe((data: Student[]) => {
+    this.students = data;
+    this.totalStudent = this.students.length;
+    this.averageScore = this.calculateAverage(this.students);
+  });
 }
 
+
+  calculateAverage(students: Student[]): number {
+    const total = students.reduce((sum, student) => sum + student.score, 0);
+    return students.length ? total / students.length : 0;
+  }
+
+  openAddModal(){
+    this.showAddModal = true;
+  }
+
+  openUpdateModal() {
+    this.showUpdateModal = true;
+  }
+
+  openSearchModal() {
+    this.showSearchModal = true;
+  }
+
+  closeModal() {
+    this.showAddModal = false
+    this.showUpdateModal = false;
+    this.showSearchModal = false;
+  }
+
+  updateStudent() {
+    this.closeModal();
+    this.getStudentsData();
+  }
+
+  onDelete(id: number): void {
+  const confirmed = window.confirm('Are you sure you want to delete this student?');
+
+  if (confirmed) {
+    this.studentService.deleteStudent(id).subscribe({
+      next: () => {
+        console.log('Student deleted successfully');
+        this.getStudentsData(); 
+      },
+      error: () => {
+        this.message = 'Error deleting student';
+      }
+    });
+  }
+}
 }
 
 

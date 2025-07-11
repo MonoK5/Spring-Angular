@@ -31,4 +31,12 @@ export class UserService {
     deleteStudent(id: number): Observable<any>{
         return this.http.delete(`${this.apiUrl}/api/students/${id}`)
     }
+
+    getStudentByName(name: string): Observable<Student[]> {
+    return this.http.get<Student[]>(`${this.apiUrl}/api/students/name/${name}`)
+  }
+
+  calculateStudentAvg(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/api/students/average`)
+  }
 }
