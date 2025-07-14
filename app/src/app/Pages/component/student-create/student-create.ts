@@ -1,8 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { UserService } from '../../../Services/StudentsServices';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { UserService } from '../../../Services/StudentsServices';
 
 @Component({
   selector: 'app-student-create',
@@ -66,5 +66,9 @@ form!: FormGroup;
    closeModal() {
     this.showAddModal = false;
   
+
+    
   }
 }
+
+
