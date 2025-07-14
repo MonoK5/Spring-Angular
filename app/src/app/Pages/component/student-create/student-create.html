@@ -27,6 +27,9 @@
           <div *ngIf="form.get('name')?.errors?.['minlength']">
             Name must be at least 3 characters.
           </div>
+          <div *ngIf="form.get('name')?.errors?.['pattern']">
+          Only letters are allowed.
+          </div>
         </div>
       </div>
 

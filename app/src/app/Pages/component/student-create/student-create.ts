@@ -26,7 +26,7 @@ form!: FormGroup;
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
+      name: ['', [Validators.required, Validators.minLength(3), Validators.pattern("[a-zA-Z ]*")]],
       score: [
         '',
         [Validators.required, Validators.min(0), Validators.max(100)],
