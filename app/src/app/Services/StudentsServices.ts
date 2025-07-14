@@ -24,8 +24,8 @@ export class UserService {
         return this.http.post(this.apiUrl+"/api/students", students)
     }
 
-    updateStudent(id: number, students: FormData): Observable<any>{
-        return this.http.put(`${this.apiUrl}/api/students/${id}`, students)
+    updateStudent(id: number ,students: Student): Observable<any>{
+        return this.http.put(`${this.apiUrl}/api/students/${students.id}`, students)
     }
 
     deleteStudent(id: number): Observable<any>{

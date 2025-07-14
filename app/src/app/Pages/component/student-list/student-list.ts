@@ -27,7 +27,7 @@ throw new Error('Method not implemented.');
   showAddModal = false;
   showUpdateModal = false;
   showSearchModal = false;
-  
+  showUpdateSuccess = false;
   averageScore: number = 0;
   message: string = '';
 
@@ -70,10 +70,15 @@ getStudentsData() {
   }
 
   updateStudent() {
-    this.closeModal();
+   this.closeModal();
     this.getStudentsData();
+    this.showUpdateSuccess = true;
   }
 
+  handleSuccessClose() {
+  this.showUpdateSuccess = false;
+  this.closeModal();
+}
   onDelete(id: number): void {
   const confirmed = window.confirm('Are you sure you want to delete this student?');
 
