@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
+  // HTML tag name for this component 
   selector: 'app-student-create',
    imports: [CommonModule, RouterModule, ReactiveFormsModule],
   providers: [UserService],
@@ -13,16 +14,20 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class StudentCreate implements OnInit {
 
+  // Reactive form group (exclamation mark indicates it will be initialized later)
 form!: FormGroup;
+// Boolean to control modal visibility
   showAddModal = false;
+  //  Boolean to show confirmation dialog
   showConfirmation: boolean = false;
 
-
+// Allow parent components to listen for when a student is created or modal is closed
   @Output() created = new EventEmitter<void>();
   @Output() close = new EventEmitter<void>();
 
 
   constructor(
+    // For API calls
     private studentService: UserService,
     private formBuilder: FormBuilder, private router: Router
   ) {}
