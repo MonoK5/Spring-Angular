@@ -12,12 +12,19 @@ import { UserService } from '../../../Services/StudentsServices';
   styleUrl: './student-create.css',
 })
 export class StudentCreate implements OnInit {
+onNo() {
+throw new Error('Method not implemented.');
+}
+onYes() {
+throw new Error('Method not implemented.');
+}
 form!: FormGroup;
   showAddModal = false;
 
 
   @Output() created = new EventEmitter<void>();
   @Output() close = new EventEmitter<void>();
+showConfirmation: any;
 
   constructor(
     private studentService: UserService,
