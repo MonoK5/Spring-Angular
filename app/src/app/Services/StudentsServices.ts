@@ -5,19 +5,23 @@ import { enviroment } from "../env/enviroment";
 
 
 @Injectable({
+    // Makes this service a singleton available throughout the entire application
     providedIn: "root"
 })
 export class UserService {
+    // Stores the base API URL from environment configuration
     private apiUrl = enviroment.apiUrl;
 
+    // Constructor injects for making HTTP requests
     constructor(private http: HttpClient) {}
 
+    // Fetches all students from the API endpoint 
     getStudent(): Observable<Student[]>{
         return this.http.get<Student[]>(this.apiUrl+"/api/students")
     }
 
     getStudentById(id: number): Observable<Student>{
-        return this.http.get<Student>(this.apiUrl+`${this.apiUrl}/api/students/${id}`)
+        return this.http.get<Student>(`${this.apiUrl}/api/students/${id}`)
     }
 
     createStudent(students: FormData): Observable<any>{
