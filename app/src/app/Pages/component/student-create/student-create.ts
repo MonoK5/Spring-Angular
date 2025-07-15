@@ -36,7 +36,7 @@ form!: FormGroup;
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       //  Required, minimum 3 characters
-      name: ['', [Validators.required, Validators.minLength(3)]],
+      name: ['', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]*$')]],
       // Required, must be between 0-100
       score: [
         '',
