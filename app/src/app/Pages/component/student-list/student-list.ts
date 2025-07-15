@@ -30,6 +30,8 @@ throw new Error('Method not implemented.');
   showUpdateSuccess = false;
   averageScore: number = 0;
   message: string = '';
+  studentToDeleteId: number | null = null;
+  showDeleteConfirmation: boolean = false; 
 
   constructor(private studentService: UserService) {}
 
@@ -79,6 +81,33 @@ getStudentsData() {
   this.showUpdateSuccess = false;
   this.closeModal();
 }
+
+confirmDelete(id: number): void {
+    this.studentToDeleteId = id;
+    this.showDeleteConfirmation = true;
+  }
+
+ deleteConfirmed(): void {
+    if (this.studentToDeleteId != null) {
+      this.studentService.deleteStudent(this.studentToDeleteId).subscribe({
+        next: () => {
+          console.log('Student deleted successfully');
+          this.getStudentsData();
+          this.showDeleteConfirmation = false;
+          this.studentToDeleteId = null;
+        },
+        error: () => {
+          this.message = 'Error deleting student';
+          this.showDeleteConfirmation = false;
+          this.studentToDeleteId = null;
+        }
+      });
+    }
+  }
+  cancelDelete(): void {
+    this.showDeleteConfirmation = false;
+    this.studentToDeleteId = null;
+  }
   onDelete(id: number): void {
   const confirmed = window.confirm('Are you sure you want to delete this student?');
 
@@ -95,5 +124,4 @@ getStudentsData() {
   }
 }
 }
-
 
