@@ -1,15 +1,13 @@
 <div class="flex min-h-screen bg-gray-100">
-
-
   <!-- Main Content -->
-  <div class="flex-1 flex flex-col ">
+  <div class="flex flex-col flex-1 min-h-screen">
     <!-- Top Navbar -->
     <header class="bg-white shadow-md p-4 flex justify-between items-center">
       <h1 class="text-xl font-bold text-purple-700">Dashboard</h1>
     </header>
 
     <!-- Content -->
-    <main class="p-6 space-y-6">
+    <main class="flex-1 p-6 space-y-6">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div class="bg-white p-6 rounded-lg shadow-md">
           <p class="text-sm text-gray-500">Average of the Student</p>
@@ -20,7 +18,7 @@
         <div class="bg-white p-6 rounded-lg shadow-md">
           <p class="text-sm text-gray-500">Total Number of the Student</p>
           <h2 class="text-3xl font-bold text-green-600 mt-2">
-            {{totalStudent}}
+            {{ totalStudent }}
           </h2>
         </div>
       </div>
@@ -53,9 +51,7 @@
         </table>
       </div>
 
-      <div
-        class="bg-white p-1 rounded-lg shadow-md flex flex-wrap gap-10 justify-center items-center"
-      >
+      <div class="bg-white p-1 rounded-lg shadow-md flex flex-wrap gap-10 justify-center items-center">
         <button
           class="bg-purple-600 text-white py-3 px-6 rounded-lg shadow hover:bg-purple-700"
           [routerLink]="['/students/create']"
@@ -78,6 +74,7 @@
       </div>
     </main>
 
+    <!-- Footer -->
     <footer class="bg-white p-4 text-center text-sm text-gray-400 border-t">
       © 2025 Designed and Developed by Shaper. All rights reserved.
     </footer>

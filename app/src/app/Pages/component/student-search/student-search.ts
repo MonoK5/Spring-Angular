@@ -29,7 +29,7 @@ export class StudentSearch {
   getStudentByName(): void {
     this.searchTriggered = true;
 
-    if (this.searchStudent.trim()) {
+    if (this.searchStudent.trim().toUpperCase() || this.searchStudent.trim().toLowerCase()) {
       this.studentService.getStudentByName(this.searchStudent).subscribe((data: Student[]) => {
         this.student = data;
         this.showError = data.length === 0;
