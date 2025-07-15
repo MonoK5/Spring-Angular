@@ -9,7 +9,7 @@ import { UserService } from '../../../Services/StudentsServices';
    imports: [CommonModule, RouterModule, FormsModule],
   providers: [UserService],
   templateUrl: './student-search.html',
-  styleUrl: './student-search.css'
+  styleUrls: ['./student-search.css']
 })
 export class StudentSearch {
  

@@ -140,7 +140,7 @@ onSubmit() {
       return;
     }
 
-    this.studentService.updateStudent(studentData.id, studentData).subscribe({
+    this.studentService.updateStudent(studentData).subscribe({
       next: () => {
         console.log('Student updated successfully');
 
@@ -155,7 +155,6 @@ onSubmit() {
     });
   }
 }
-
 
 
 

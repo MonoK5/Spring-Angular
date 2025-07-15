@@ -1,15 +1,15 @@
-import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { UserService } from '../../../Services/StudentsServices';
+import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { UserService } from '../../../Services/StudentsServices';
 
 @Component({
   selector: 'app-student-create',
    imports: [CommonModule, RouterModule, ReactiveFormsModule],
   providers: [UserService],
   templateUrl: './student-create.html',
-  styleUrl: './student-create.css',
+  styleUrls: ['./student-create.css']
 })
 export class StudentCreate implements OnInit {
 onNo() {
@@ -20,6 +20,7 @@ throw new Error('Method not implemented.');
 }
 form!: FormGroup;
   showAddModal = false;
+  showConfirmation: boolean = false;
 
 
   @Output() created = new EventEmitter<void>();
@@ -33,7 +34,7 @@ showConfirmation: any;
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(3), Validators.pattern("[a-zA-Z ]*")]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
       score: [
         '',
         [Validators.required, Validators.min(0), Validators.max(100)],
@@ -54,6 +55,7 @@ showConfirmation: any;
           this.form.reset({ name: '', score: '', grade: '10' });
           this.created.emit();
           this.close.emit();
+           this.showConfirmation = true;
         },
         error: (err) => {
           console.error('Error:', err);
@@ -72,10 +74,15 @@ showConfirmation: any;
 
    closeModal() {
     this.showAddModal = false;
-  
+  }
 
-    
+  onYes(): void {
+    this.form.reset({ grade: '10' });
+    this.showConfirmation = false;
+  }
+
+  onNo(): void {
+    this.showConfirmation = false;
+    this.navigateToMain();
   }
 }
-
-
